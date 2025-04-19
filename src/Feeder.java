@@ -1,8 +1,5 @@
 public class Feeder
 {
-    public Feeder() {
-        System.out.println(simulateManyDays(10, 5));
-    }
     /**
      * The amount of food, in grams, currently in the bird feeder; initialized in the constructor and
      * always greater than or equal to zero
@@ -42,7 +39,11 @@ public class Feeder
         return successes;
     }
 
+    //main method for testing
     public static void main(String[] args) {
         new Feeder();
+    }
+    public Feeder() {
+        System.out.println(simulateManyDays(10, 5));
     }
 }
