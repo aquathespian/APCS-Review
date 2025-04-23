@@ -34,6 +34,7 @@ public class Feeder
         int successes = 0;
         for (int i=0; i<numDays; i++) {
             simulateOneDay(numBirds);
+            System.out.println(currentFood);
             if (currentFood > 0) successes++;
         }
         return successes;
@@ -44,6 +45,6 @@ public class Feeder
         new Feeder();
     }
     public Feeder() {
-        System.out.println(simulateManyDays(10, 5));
+        System.out.println(simulateManyDays(2, 5));
     }
 }

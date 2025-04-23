@@ -11,6 +11,10 @@ public class GridPath
 
         public int getRow() {return theRow;}
         public int getCol() {return theCol;}
+
+        public String toString() {
+            return theRow + ", " + theCol;
+        }
     }
 
     /** Initialized in the constructor with distinct values that never change */
@@ -26,7 +30,7 @@ public class GridPath
             if (row == grid.length - 1) return new Location(row, col + 1);
             else if (col == grid[0].length - 1) return new Location(row + 1, col);
             else if (grid[row + 1][col] > grid[row][col + 1]) return new Location(row, col + 1);
-            else return new Location(col + 1, row);
+            else return new Location(row + 1, col);
     }
 
     /**
@@ -39,11 +43,12 @@ public class GridPath
      {
          Location location = new Location(row, col);
          int sum = 0;
-         while (location.getRow() < grid.length - 1 || location.getCol() < grid.length - 1) {
+         while (location.getRow() < grid.length - 1 || location.getCol() < grid[0].length - 1) {
                  sum += grid[location.getRow()][location.getCol()];
                  location = getNextLoc(location.getRow(), location.getCol());
+                 System.out.println(location);
              }
-         return sum;
+         return sum + grid[location.getRow()][location.getCol()];
      }
 
      //main method for testing
@@ -51,12 +56,13 @@ public class GridPath
          new GridPath();
      }
      public GridPath() {
-         grid = new int[][]{{12, 11, 7, 10, 18}, {3, 21, 8, 17, 22}, {4, 2, 9, 20, 30}, {13, 14, 15, 19, 25}, {5, 16, 0, 1, 6}};
+         grid = new int[][]{{12, 3, 4, 13, 5}, {11, 21, 2, 14, 16}, {7, 8, 9, 15, 0}, {10, 17, 20, 19, 1}, {18, 22, 30, 25, 6}};
          System.out.println(getNextLoc(0, 0));
          System.out.println(getNextLoc(1, 3));
          System.out.println(getNextLoc(2, 4));
          System.out.println(getNextLoc(4, 3));
-         grid = new int[][]{{12, 11, 7, 8}, {30, 3, 2, 33}, {40, 22, 9, 18}, {25, 15, 4, 6}, {5, 43, 0, 1}};
+         grid = new int[][]{{12, 30, 40, 25, 5}, {11, 3, 22, 15, 43}, {7, 2, 9, 4, 0}, {8, 33, 18, 6, 1}};
+         System.out.println();
          System.out.println(sumPath(1, 1));
      }
 }
